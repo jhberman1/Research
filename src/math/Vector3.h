@@ -1,6 +1,7 @@
 #ifndef VECTOR3_H
 #define	VECTOR3_H
 
+#include <cstdlib>
 #include <iostream>
 
 template <class T, class U>
@@ -19,6 +20,7 @@ public:
     {
         x=y=z=0;
         r=g=b=a=0;
+        totalVecs++;
     }
     
     inline Vector3(T x, T y, T z, U r, U g, U b, U a):
@@ -57,6 +59,7 @@ public:
         g = v.g;
         b = v.b;
         a = v.a;
+        totalVecs++;
     }
     
     /*****************************************************/
