@@ -4,7 +4,8 @@
 #include "Vector3.h"
 #include <cmath>
 
-template <class T>
+// templated 3D vector class with default type float
+template <class T = float>
 class Quat 
 {
 private:
@@ -19,11 +20,11 @@ public:
      
     }
     
-    inline Quat(Vector3<T> axis, T theta)
+    inline Quat(Vector3<> axis, T theta)
     {
         if(axis.squaredMag() > 1)
             axis.normalize();
-        x = axis[0]*sin(theta/2)
+        x = axis[0]*sin(theta/2);
         y = axis[1]*sin(theta/2);
         z = axis[2]*sin(theta/2);
         w = cos(theta/2);
@@ -46,7 +47,7 @@ public:
                     w*q.w + x*q.x + y*q.y - z*q.z);
     }
     
-    inline void rotateXYZ(Vector3<T>& v)
+    inline void rotateXYZ(Vector3<>& v)
     {
         v[0] = v[0]*(1 - 2*y*y - 2*z*z) + 
                      v[1]*(2*x*y - 2*w*z) + 
@@ -59,9 +60,9 @@ public:
                             v[2]*(1 - 2*x*x - 2*y*y);
     }
     
-    inline Vector3<T> getRotateXYZ(const Vector3<T>& v)
+    inline Vector3<> getRotateXYZ(const Vector3<>& v)
     {
-        return Vector3<T>(v[0]*(1 - 2*y*y - 2*z*z) + 
+        return Vector3<>(v[0]*(1 - 2*y*y - 2*z*z) + 
                                 v[1]*(2*x*y - 2*w*z) + 
                                       v[2]*(2*x*z + 2*w*y),
                           v[0]*(2*x*y + 2*w*z) + 
